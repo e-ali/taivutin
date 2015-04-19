@@ -19,7 +19,7 @@ class Entry {
 
 	void sana(const std::string &);
 	void hn(const int);
-	void taivutus(const Inflection &);
+	void inflection(const Inflection &);
 
 	std::string sana() const;
 	int hn() const;

@@ -21,7 +21,7 @@ void Entry::hn(const int hn)
 {
 	m_hn= hn;
 }
-void Entry::taivutus(const Inflection &t)
+void Entry::inflection(const Inflection &t)
 {
 	m_taivutukset.push_back(t);
 	m_n_taivutukset++;

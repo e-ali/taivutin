@@ -1,0 +1,8 @@
+# Vim swap-files
+*.swp
+
+# Object files
+*.o
+
+# Program binary
+taivutin
