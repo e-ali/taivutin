@@ -4,23 +4,35 @@ std::string Entry::sana() const
 {
 	return m_sana;
 }
+
 int Entry::hn() const
 {
 	return m_hn;
 }
-int Entry::n_taivutukset() const
+
+int Entry::inflections() const
 {
 	return m_n_taivutukset;
+}
+
+Inflection Entry::inflection(size_t const i) const
+{
+	if (i <= m_n_taivutukset)
+		return m_taivutukset[i];
+	else
+		throw std::out_of_range("Out of range: Inflection data doesn't exist.");
 }
 
 void Entry::sana(const std::string &sana)
 {
 	m_sana = sana;
 }
+
 void Entry::hn(const int hn)
 {
 	m_hn= hn;
 }
+
 void Entry::inflection(const Inflection &t)
 {
 	m_taivutukset.push_back(t);

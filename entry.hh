@@ -2,6 +2,7 @@
 #define ENTRY_HH
 
 #include <ostream>
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -23,7 +24,8 @@ class Entry {
 
 	std::string sana() const;
 	int hn() const;
-	int n_taivutukset() const;
+	int inflections() const;
+	Inflection inflection(const size_t) const;
 
 	void print(std::ostream &os);
 };

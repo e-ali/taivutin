@@ -6,9 +6,21 @@
 int main()
 {
 	Kotus kotus;
-	size_t sz = kotus.get_size();
-	for (size_t i = 0; i < sz; i++)
-		kotus.wordlist[i].print(std::cout);
+
+	Entry e;
+	std::string word;
+	while (std::cin >> word)
+	{
+		if (word == "q")
+			break;
+		try {
+			e = kotus.search(word);
+			e.print(std::cout);
+		}
+		catch (const std::range_error &e) {
+			std::cout << e.what() << std::endl;
+		}
+	}
 
 	return 0;
 }

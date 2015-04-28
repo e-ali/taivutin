@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "xml.hh"
 #include "kotus.hh"
 
@@ -16,4 +18,16 @@ Kotus::Kotus()
 size_t Kotus::get_size() const
 {
 	return size;
+}
+
+Entry Kotus::search(const std::string &word) const
+{
+	auto it = std::find_if(begin(wordlist), end(wordlist), [=] (Entry const& e) {
+		return (e.sana() == word); });
+	bool found = (it != end(wordlist));
+ 
+	if (found)
+		return *it;
+	else
+		throw std::range_error("Word not found.");
 }
