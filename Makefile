@@ -2,11 +2,20 @@ CC=clang++
 CFLAGS=-std=c++11
 LDFLAGS=-lxerces-c
 
-taivutin: inflection.o entry.o xml.o kotus.o main.o
-	${CC} ${CFLAGS} ${LDFLAGS} inflection.o entry.o xml.o kotus.o main.o -o taivutin
+taivutin: inflection.o entry.o xml.o kotus.o verb.o nominal.o inflect.o main.o
+	${CC} ${CFLAGS} ${LDFLAGS} inflection.o entry.o xml.o kotus.o verb.o nominal.o inflect.o main.o -o taivutin
 
 main.o: main.cc
 	${CC} ${CFLAGS} -c main.cc
+
+inflect.o: inflect.cc inflect.hh
+	${CC} ${CFLAGS} -c inflect.cc
+
+nominal.o: nominal.cc nominal.hh
+	${CC} ${CFLAGS} -c nominal.cc
+
+verb.o: verb.cc verb.hh
+	${CC} ${CFLAGS} -c verb.cc
 
 kotus.o: kotus.cc kotus.hh
 	${CC} ${CFLAGS} -c kotus.cc

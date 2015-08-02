@@ -22,10 +22,10 @@ class Entry {
 	void hn(const int);
 	void inflection(const Inflection &);
 
-	std::string sana() const;
-	int hn() const;
-	int inflections() const;
-	Inflection inflection(const size_t) const;
+	std::string get_sana() const;
+	int get_hn() const;
+	int get_inflections() const;
+	Inflection get_inflection(const size_t) const;
 
 	void print(std::ostream &os);
 };

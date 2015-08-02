@@ -1,21 +1,21 @@
 #include "entry.hh"
 
-std::string Entry::sana() const
+std::string Entry::get_sana() const
 {
 	return m_sana;
 }
 
-int Entry::hn() const
+int Entry::get_hn() const
 {
 	return m_hn;
 }
 
-int Entry::inflections() const
+int Entry::get_inflections() const
 {
 	return m_n_taivutukset;
 }
 
-Inflection Entry::inflection(size_t const i) const
+Inflection Entry::get_inflection(size_t const i) const
 {
 	if (i <= m_n_taivutukset)
 		return m_taivutukset[i];

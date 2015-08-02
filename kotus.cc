@@ -23,7 +23,7 @@ size_t Kotus::get_size() const
 Entry Kotus::search(const std::string &word) const
 {
 	auto it = std::find_if(begin(wordlist), end(wordlist), [=] (Entry const& e) {
-		return (e.sana() == word); });
+		return (e.get_sana() == word); });
 	bool found = (it != end(wordlist));
  
 	if (found)
