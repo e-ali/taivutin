@@ -16,10 +16,11 @@
  */
 class Nominal {
 	Entry m_e;
+
+	public:
 	std::map<std::string, std::string> sg;
 	std::map<std::string, std::string> pl;
 
-	public:
 	Nominal(Entry &e);
 
 	void declense();

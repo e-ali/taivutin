@@ -9,7 +9,7 @@ XML::XML()
 
 XML::~XML()
 {
-        delete parser;
+    delete parser;
 	xercesc::XMLPlatformUtils::Terminate();
 }
 
