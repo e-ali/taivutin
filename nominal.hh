@@ -15,9 +15,9 @@
  *	 instructive, comitative (INS, COM)
  */
 class Nominal {
-	Entry m_e;
 
 	public:
+	Entry m_e;
 	std::map<std::string, std::string> sg;
 	std::map<std::string, std::string> pl;
 

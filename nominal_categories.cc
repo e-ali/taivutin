@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "nominal_categories.hh"
 #include "nominal.hh"
+#include "nominal_categories.hh"
+#include "nominal_consonant.hh"
 
 std::array<std::string,14> all_cases{
 	"NOM", "GEN", "PTV",
@@ -31,8 +32,7 @@ int suffix_cases(Nominal *noun)
 	std::array<std::string,3> misc_back{"ksi", "na", "tta"};
 	std::array<std::string,3> misc_front{"ksi", "nä", "ttä"};
 
-	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos)
-	{
+	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
 		/* locations */
 		for (int i = 0; i < loc_abbr.size(); i++) {
 			noun->sg[loc_abbr[i]] += loc_back[i];
@@ -64,22 +64,27 @@ int cat1(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "jen";
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja";
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -90,22 +95,27 @@ int cat2(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "jen"; /* also "uiden" and "uitten" */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja"; /* also "ita" */
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -116,22 +126,27 @@ int cat3(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "iden"; /* also "itten" */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += "ta";
 		noun->pl["PTV"] += "ita"; /* also "ita" */
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "tä";
 		noun->pl["PTV"] += "itä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -158,22 +173,27 @@ int cat4(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "jen"; /* also gradate + "iden" and "itten" */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja"; /* also "ita" */
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -199,22 +219,27 @@ int cat5(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "en";
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja";
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -240,22 +265,27 @@ int cat6(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "en"; /* also: s/i$/e + -iden or -itten */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja"; /* also: -ita */
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -293,6 +323,8 @@ int cat7(Nominal *noun, Entry &entry)
 		noun->pl["PTV"] += "iä";
 	}
 
+	kv(noun);
+
 	return 0;
 }
 
@@ -302,22 +334,27 @@ int cat8(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "jen"; /* also: -in */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja";
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -334,22 +371,27 @@ int cat9(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "jen"; /* also: -in */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "ihin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ja";
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "jä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "ihin";
+
+	kv(noun);
 
 	return 0;
 }
@@ -364,22 +406,28 @@ int cat10(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "ien"; /* also: -in */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "iin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ia";
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "iä";
 	}
+
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "iiin";
+
+	kv(noun);
 	
 	return 0;
 }
@@ -394,22 +442,27 @@ int cat11(Nominal *noun, Entry &entry)
 	noun->sg["GEN"] += 'n';
 	noun->pl["GEN"] += "ien"; /* also: -in */
 
-	noun->sg["ILL"] += noun->sg["NOM"].back();
-	noun->sg["ILL"] += 'n';
-	noun->pl["ILL"] += "iin";
-
 	suffix_cases(noun);
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
 
 	if (noun->sg["NOM"].find_last_of("aou") != std::string::npos) {
+		noun->sg["ILL"] += noun->sg["NOM"].back();
+
 		noun->sg["PTV"] += 'a';
 		noun->pl["PTV"] += "ia";
 	} else {
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+		noun->sg["ILL"] += noun->sg["NOM"].at(noun->sg["ILL"].length()-2);
+
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "iä";
 	}
+	noun->sg["ILL"] += 'n';
+	noun->pl["ILL"] += "iin";
+
+	kv(noun);
 	
 	return 0;
 }
@@ -478,6 +531,8 @@ int cat18(Nominal *noun, Entry &entry)
 		noun->sg["PTV"] += "ä";
 		noun->pl["PTV"] += "tä";
 	}
+
+	kv(noun);
 	
 	return 0;
 }
@@ -608,6 +663,8 @@ int cat38(Nominal *noun, Entry &entry)
 
 	noun->pl["INS"] += "in";
 	noun->pl["COM"] += "ineen";
+
+	kv(noun);
 
 	return 0;
 }
